@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "lib": [
+      "ES2022"
+    ],
+    "types": [
+      "node"
+    ],
+    "target": "ES2022",
+    "noEmit": true
+  },
+  "include": [
+    "vite.config.ts",
+    "vitest.config.ts"
+  ]
+}

@@ -1,0 +1,8 @@
+build/bin
+node_modules
+# frontend/dist is generated, but must exist for go:embed (keep the placeholder).
+frontend/dist/*
+!frontend/dist/gitkeep
+dist/
+*.tsbuildinfo
+frontend/package.json.md5
