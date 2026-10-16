@@ -17,14 +17,14 @@ import (
 	"testing"
 	"time"
 
-	"dbstudio/internal/apperr"
-	"dbstudio/internal/autocomplete"
-	"dbstudio/internal/connections"
-	"dbstudio/internal/database"
-	"dbstudio/internal/database/mysql"
-	"dbstudio/internal/metadata"
-	"dbstudio/internal/query"
-	"dbstudio/internal/security"
+	"anansi/internal/apperr"
+	"anansi/internal/autocomplete"
+	"anansi/internal/connections"
+	"anansi/internal/database"
+	"anansi/internal/database/mysql"
+	"anansi/internal/metadata"
+	"anansi/internal/query"
+	"anansi/internal/security"
 )
 
 type target struct {
@@ -35,10 +35,10 @@ type target struct {
 
 func targets(t *testing.T) []target {
 	var out []target
-	if a := os.Getenv("DBSTUDIO_IT_MYSQL"); a != "" {
+	if a := os.Getenv("ANANSI_IT_MYSQL"); a != "" {
 		out = append(out, target{"mysql", database.MySQL, a})
 	}
-	if a := os.Getenv("DBSTUDIO_IT_MARIADB"); a != "" {
+	if a := os.Getenv("ANANSI_IT_MARIADB"); a != "" {
 		out = append(out, target{"mariadb", database.MariaDB, a})
 	}
 	if len(out) == 0 {
@@ -47,7 +47,7 @@ func targets(t *testing.T) []target {
 	return out
 }
 
-func password() string { return os.Getenv("DBSTUDIO_IT_PASSWORD") }
+func password() string { return os.Getenv("ANANSI_IT_PASSWORD") }
 
 type env struct {
 	svc     *connections.Service

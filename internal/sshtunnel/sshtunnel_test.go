@@ -15,7 +15,7 @@ import (
 	"testing"
 	"time"
 
-	"dbstudio/internal/sshtunnel/sshtest"
+	"anansi/internal/sshtunnel/sshtest"
 
 	"golang.org/x/crypto/ssh"
 )

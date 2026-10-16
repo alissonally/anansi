@@ -44,7 +44,7 @@ const selected = ref(new Set<number>())
 const anchor = ref<number | null>(null)
 const editing = ref<{ row: number; col: number; text: string } | null>(null)
 const editorEl = ref<HTMLInputElement | HTMLSelectElement | null>(null)
-const NULL_OPTION = '__dbstudio_null__'
+const NULL_OPTION = '__anansi_null__'
 function setEditorEl(el: unknown) {
   editorEl.value = (el as HTMLInputElement | HTMLSelectElement | null) ?? null
 }

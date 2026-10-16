@@ -14,19 +14,19 @@ import (
 
 	"github.com/wailsapp/wails/v2/pkg/runtime"
 
-	"dbstudio/internal/apperr"
-	"dbstudio/internal/autocomplete"
-	"dbstudio/internal/config"
-	"dbstudio/internal/connections"
-	"dbstudio/internal/database"
-	"dbstudio/internal/database/mysql"
-	"dbstudio/internal/history"
-	"dbstudio/internal/metadata"
-	"dbstudio/internal/query"
-	"dbstudio/internal/security"
-	"dbstudio/internal/sshtunnel"
-	"dbstudio/internal/tasks"
-	"dbstudio/internal/workspace"
+	"anansi/internal/apperr"
+	"anansi/internal/autocomplete"
+	"anansi/internal/config"
+	"anansi/internal/connections"
+	"anansi/internal/database"
+	"anansi/internal/database/mysql"
+	"anansi/internal/history"
+	"anansi/internal/metadata"
+	"anansi/internal/query"
+	"anansi/internal/security"
+	"anansi/internal/sshtunnel"
+	"anansi/internal/tasks"
+	"anansi/internal/workspace"
 )
 
 // Version of the application.

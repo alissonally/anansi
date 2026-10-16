@@ -6,7 +6,7 @@ import (
 	"sort"
 	"strings"
 
-	"dbstudio/internal/database"
+	"anansi/internal/database"
 )
 
 type inspector struct{ db *sql.DB }

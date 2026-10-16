@@ -1,8 +1,8 @@
-# Inventário — funcionalidades do HeidiSQL no Database Studio
+# Inventário — funcionalidades do HeidiSQL no Anansi
 
 Este documento percorre, seção por seção, o inventário de funcionalidades do HeidiSQL
 ([`referencia-heidisql.md`](referencia-heidisql.md), levantado do código-fonte em Delphi) e registra o status de
-cada item no Database Studio depois das 8 etapas de paridade. A coluna "Onde/observação" indica a etapa em que o
+cada item no Anansi depois das 8 etapas de paridade. A coluna "Onde/observação" indica a etapa em que o
 item foi feito (ver `etapa-N-*.md`) e/ou o arquivo principal; quando o item não foi feito, ela traz o motivo.
 O foco do projeto é MySQL/MariaDB no desktop (Wails + Go + Vue), então recursos de outros bancos, exclusivos do
 Windows ou que dependem de serviços externos ficam de fora de propósito. Os itens foram conferidos nos registros
@@ -16,7 +16,7 @@ das etapas e, quando havia dúvida, no código (`internal/`, `frontend/src/`).
 | ➕ melhorado | Implementado e melhorado em relação ao HeidiSQL (a observação diz como) |
 | 🟡 parcial | Implementado em parte (a observação diz o que falta) |
 | ❌ não feito | Não implementado (com o motivo) |
-| ➖ não se aplica | Não faz sentido na arquitetura do Database Studio (com o motivo) |
+| ➖ não se aplica | Não faz sentido na arquitetura do Anansi (com o motivo) |
 
 ## Resumo
 
@@ -492,7 +492,7 @@ das etapas e, quando havia dúvida, no código (`internal/`, `frontend/src/`).
 |---|---|---|
 | Caminho dos programas de linha de comando do MySQL | ❌ não feito | não há lançador do cliente `mysql` |
 | Idioma | ❌ não feito | interface só em português; pacotes de idioma fora do escopo |
-| Pasta de snippets personalizada | ❌ não feito | pasta fixa `~/.config/dbstudio/snippets` |
+| Pasta de snippets personalizada | ❌ não feito | pasta fixa `~/.config/anansi/snippets` |
 | Fonte e tamanho da interface | ❌ não feito | segue o sistema |
 | Tema | ➕ melhorado | claro, escuro ou seguir o sistema |
 | Pacote de ícones | ❌ não feito | pacotes de ícones fora do escopo |
@@ -587,7 +587,7 @@ das etapas e, quando havia dúvida, no código (`internal/`, `frontend/src/`).
 | Funcionalidade do HeidiSQL | Status | Onde/observação |
 |---|---|---|
 | Linha de comando (`-h`, `-u`, `-p`, `--psettings`…) | ❌ não feito | etapa 8; não priorizado |
-| Arquivo de configurações portátil | ❌ não feito | etapa 8; configuração em `~/.config/dbstudio` |
+| Arquivo de configurações portátil | ❌ não feito | etapa 8; configuração em `~/.config/anansi` |
 | Exportar/importar configurações | ➕ melhorado | etapa 7; JSON sem senhas nem segredos SSH (o HeidiSQL exporta senhas ofuscadas) |
 | Reconectar ao iniciar e focar a última sessão | ✅ feito | etapa 8 |
 | Keep-alive e reconexão | ✅ feito | etapa 7 |

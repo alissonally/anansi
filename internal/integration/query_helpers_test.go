@@ -4,7 +4,7 @@ import (
 	"strings"
 	"testing"
 
-	"dbstudio/internal/query"
+	"anansi/internal/query"
 )
 
 func TestQueryHelpers(t *testing.T) {

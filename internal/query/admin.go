@@ -6,9 +6,9 @@ import (
 	"strings"
 	"time"
 
-	"dbstudio/internal/apperr"
-	"dbstudio/internal/database"
-	"dbstudio/internal/sqllex"
+	"anansi/internal/apperr"
+	"anansi/internal/database"
+	"anansi/internal/sqllex"
 )
 
 // adminTimeout bounds statements issued from dialogs and object actions.

@@ -17,9 +17,9 @@ import (
 	"strings"
 	"time"
 
-	"dbstudio/internal/database"
-	"dbstudio/internal/gridexport"
-	"dbstudio/internal/query"
+	"anansi/internal/database"
+	"anansi/internal/gridexport"
+	"anansi/internal/query"
 )
 
 // Data modes.
@@ -151,7 +151,7 @@ func (d *Dumper) Run(ctx context.Context) error {
 	}
 	defer func() { _, _ = d.Conn.ExecContext(context.Background(), "COMMIT") }()
 
-	if err := d.Sink.Comment(fmt.Sprintf("Database Studio — dump gerado em %s", time.Now().Format("2006-01-02 15:04:05 -0700"))); err != nil {
+	if err := d.Sink.Comment(fmt.Sprintf("Anansi — dump gerado em %s", time.Now().Format("2006-01-02 15:04:05 -0700"))); err != nil {
 		return err
 	}
 	if d.Server != "" {

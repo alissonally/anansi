@@ -1,4 +1,4 @@
-# Database Studio
+# Anansi
 
 Gerenciador desktop de bancos de dados MySQL e MariaDB, feito com **Wails 2 + Go + Vue 3/TypeScript**.
 
@@ -31,22 +31,107 @@ melhoradas — veja o [inventário](docs/heidisql/inventario.md) e o registro da
 
 As decisões de arquitetura estão em [`docs/architecture.md`](docs/architecture.md).
 
-## Requisitos (Fedora)
+## HeidiSQL
+
+O Anansi tem como referência o [HeidiSQL](https://www.heidisql.com/), o cliente gráfico de
+MySQL/MariaDB criado por Ansgar Becker e mantido por uma comunidade de colaboradores, distribuído sob a
+GPL-2.0 ([código-fonte](https://github.com/HeidiSQL/HeidiSQL)). O código do HeidiSQL (Delphi) foi
+estudado para levantar suas funcionalidades e o SQL que ele gera. Essas funcionalidades foram então
+**reescritas do zero** em Go e Vue, sem copiar código. Várias foram adaptadas ao desktop Linux e
+estendidas, por exemplo:
+
+- exportação de todas as linhas em streaming;
+- dump num snapshot consistente;
+- túnel SSH embutido com verificação da chave do servidor;
+- busca de texto com expressões regulares;
+- comparação de estruturas entre databases;
+- gerenciador de usuários com expiração de senha e bloqueio de conta.
+
+A documentação desse trabalho fica em [`docs/heidisql/`](docs/heidisql/README.md):
+
+- [plano e registro das 8 etapas](docs/heidisql/README.md), com o que foi feito, as decisões e os testes
+  de cada uma;
+- [inventário](docs/heidisql/inventario.md) com o status no Anansi de cada funcionalidade do
+  HeidiSQL (feito, melhorado, parcial, não feito ou não se aplica);
+- [referência](docs/heidisql/referencia-heidisql.md) das funcionalidades do HeidiSQL, com os arquivos e
+  as linhas do código original.
+
+Recursos de outros bancos (SQL Server, PostgreSQL, SQLite, Interbase/Firebird) e recursos exclusivos do
+Windows ficaram de fora. Este projeto não tem vínculo com o HeidiSQL nem com seus autores.
+
+## Requisitos
+
+Em todos os sistemas: **Go 1.25+**, **Node.js 20.19+** (recomendado 22 LTS) com npm e o **Wails CLI v2.16**:
+
+```bash
+go install github.com/wailsapp/wails/v2/cmd/wails@v2.16.0   # instala em $(go env GOPATH)/bin
+```
+
+Coloque `$(go env GOPATH)/bin` no `PATH`. O `wails doctor` mostra o que faltar no sistema.
+
+> O desenvolvimento e os testes são feitos no **Fedora**. As instruções de Ubuntu, Windows e macOS seguem a
+> documentação do Wails e o código compila para esses sistemas, mas eles ainda não foram testados.
+
+### Fedora
 
 ```bash
 sudo dnf install -y golang nodejs npm gcc-c++ pkgconf-pkg-config gtk3-devel webkit2gtk4.1-devel
-go install github.com/wailsapp/wails/v2/cmd/wails@v2.16.0   # instala em ~/go/bin
-export PATH="$PATH:$HOME/go/bin"
 ```
 
 Versões validadas: Fedora 44, Go 1.26, Node 22, Wails v2.16.0, WebKitGTK 4.1 (2.54).
 
-> **WebKitGTK 4.1:** o Fedora recente só oferece a 4.1, e todos os comandos do Wails precisam de
-> `-tags webkit2_41` (o Makefile já inclui a tag). O `wails doctor` acusa "libwebkit Not Found" porque
-> procura a 4.0; isso não afeta o build.
+### Ubuntu / Debian
 
-Para guardar senhas é preciso um provedor de Secret Service (GNOME Keyring, que já vem no Fedora
-Workstation, ou KWallet). Sem ele o app funciona, mas pede a senha a cada conexão e a mantém só na memória.
+```bash
+sudo apt install -y build-essential pkg-config libgtk-3-dev libwebkit2gtk-4.1-dev
+```
+
+O Go e o Node.js do `apt` costumam ser antigos demais (Ubuntu 24.04 traz Go 1.22 e Node 18). Instale o Go
+pelo [pacote oficial](https://go.dev/dl/) ou com `sudo snap install go --classic`, e o Node.js 22 pelo
+[NodeSource](https://github.com/nodesource/distributions) ou pelo `nvm`. Use Ubuntu 22.04 ou mais novo
+(ou Debian 12+), que têm a WebKitGTK 4.1.
+
+### WebKitGTK 4.1 (Linux)
+
+As distribuições recentes só oferecem a WebKitGTK 4.1, e todos os comandos do Wails precisam de
+`-tags webkit2_41` (o Makefile já inclui a tag). O `wails doctor` acusa "libwebkit Not Found" porque
+procura a 4.0; isso não afeta o build.
+
+Para guardar senhas no Linux é preciso um provedor de Secret Service (GNOME Keyring, que já vem no Fedora
+Workstation e no Ubuntu, ou KWallet). Sem ele o app funciona, mas pede a senha a cada conexão e a mantém
+só na memória.
+
+### Windows 10/11
+
+- [Go](https://go.dev/dl/) e [Node.js 22 LTS](https://nodejs.org/) pelos instaladores oficiais (ou
+  `winget install GoLang.Go OpenJS.NodeJS.LTS`).
+- **WebView2 Runtime**: já vem no Windows 11 e no Windows 10 atualizado; senão, instale o
+  [Evergreen Bootstrapper](https://developer.microsoft.com/microsoft-edge/webview2/).
+- Opcional, para gerar o instalador: [NSIS](https://nsis.sourceforge.io/) no `PATH`.
+
+Sem `make`, use o Wails direto no diretório do projeto:
+
+```powershell
+cd frontend; npm ci; cd ..
+wails dev                 # desenvolvimento
+wails build -clean        # build\bin\anansi.exe
+wails build -clean -nsis  # também gera o instalador
+```
+
+As senhas ficam no Gerenciador de Credenciais do Windows. No Windows não há conexão por named pipe (o
+socket Unix é recurso de Linux/macOS), e a autenticação SSH pelo agente (`ssh-agent`/Pageant) não está
+disponível. Use senha ou chave privada.
+
+### macOS 11+
+
+```bash
+xcode-select --install          # ferramentas de linha de comando da Apple (clang)
+brew install go node
+```
+
+Depois, `wails dev` para desenvolver e `wails build -clean` para gerar `build/bin/anansi.app`.
+O executável não é assinado. Na primeira abertura, use o botão direito → **Abrir**, ou rode
+`xattr -dr com.apple.quarantine build/bin/anansi.app`. As senhas ficam no Keychain.
 
 ## Desenvolvimento
 
@@ -59,7 +144,7 @@ Durante o `make dev`, o frontend também fica acessível em `http://localhost:34
 Para não misturar com seus dados reais, use outro diretório de configuração:
 
 ```bash
-DBSTUDIO_CONFIG_DIR=/tmp/dbstudio-dev make dev
+ANANSI_CONFIG_DIR=/tmp/anansi-dev make dev
 ```
 
 ## Testes e qualidade
@@ -75,13 +160,13 @@ Os testes de integração ficam em `internal/integration` e são **pulados** qua
 configurados. Para rodá-los em servidores próprios:
 
 ```bash
-export DBSTUDIO_IT_MYSQL=127.0.0.1:13306 DBSTUDIO_IT_MARIADB=127.0.0.1:13307 DBSTUDIO_IT_PASSWORD=...
+export ANANSI_IT_MYSQL=127.0.0.1:13306 ANANSI_IT_MARIADB=127.0.0.1:13307 ANANSI_IT_PASSWORD=...
 go test -race -count=1 -v ./internal/integration/
 ```
 
 Eles criam e removem tabelas no database `studio_it` com o usuário `root`. Use servidores descartáveis.
 
-Teste opcional do keyring real: `DBSTUDIO_TEST_KEYRING=1 go test ./internal/security/`.
+Teste opcional do keyring real: `ANANSI_TEST_KEYRING=1 go test ./internal/security/`.
 
 Comandos individuais: `go test ./...`, `go vet ./...`, `cd frontend && npm run typecheck`,
 `npm run lint`, `npm test`, `npm run build`.
@@ -89,12 +174,14 @@ Comandos individuais: `go test ./...`, `go vet ./...`, `cd frontend && npm run t
 ## Build e pacotes
 
 ```bash
-make build     # build/bin/dbstudio
-make package   # dist/dbstudio-<versão>-linux-amd64.tar.gz e dist/dbstudio-<versão>-1.fc44.x86_64.rpm
+make build     # build/bin/anansi
+make package   # dist/anansi-<versão>-linux-amd64.tar.gz e dist/anansi-<versão>-1.fc44.x86_64.rpm
 ```
 
-- RPM: `sudo dnf install ./dist/dbstudio-*.rpm`. Depende de `gtk3` e `webkit2gtk4.1` e recomenda `gnome-keyring`.
+- RPM: `sudo dnf install ./dist/anansi-*.rpm`. Depende de `gtk3` e `webkit2gtk4.1` e recomenda `gnome-keyring`.
 - tar.gz: extraia e rode `./install.sh`, que instala em `~/.local/bin` com o atalho no menu.
+- Windows e macOS: `wails build -clean` (veja [Requisitos](#requisitos)); o `make package` gera só os
+  pacotes Linux.
 
 ## Primeira conexão (MySQL/MariaDB)
 
@@ -136,10 +223,15 @@ Os atalhos do aplicativo são configuráveis em **Preferências → Atalhos** (p
 
 ## Configuração local
 
-Fica em `~/.config/dbstudio/` (ou `$DBSTUDIO_CONFIG_DIR`): `connections.json`, `preferences.json`,
+Fica em `~/.config/anansi/` no Linux, `%AppData%\anansi` no Windows e `~/Library/Application Support/anansi`
+no macOS (ou em `$ANANSI_CONFIG_DIR`): `connections.json`, `preferences.json`,
 `history.json`, `workspace.json`, `queries.json`, `known_hosts` (servidores SSH confiados pelo app) e a
 pasta `snippets/`, todos com permissão `0600`. As senhas do banco e do SSH não ficam aqui; estão no keyring,
-no serviço `dbstudio` (ou só na memória, quando o perfil não salva a senha).
+no serviço `anansi` (ou só na memória, quando o perfil não salva a senha).
+
+Quem usava o app com o nome anterior (Database Studio) não perde nada. Na primeira execução,
+`~/.config/dbstudio/` é movido para o novo diretório, e as senhas do serviço `dbstudio` do keyring passam
+para `anansi` conforme são usadas.
 
 ## Limitações conhecidas
 

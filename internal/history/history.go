@@ -7,8 +7,8 @@ import (
 	"sync"
 	"time"
 
-	"dbstudio/internal/config"
-	"dbstudio/internal/sqllex"
+	"anansi/internal/config"
+	"anansi/internal/sqllex"
 )
 
 // Version is the schema version of history.json.

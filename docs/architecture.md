@@ -1,4 +1,4 @@
-# Arquitetura — Database Studio
+# Arquitetura — Anansi
 
 Este documento registra as decisões técnicas do aplicativo (versão 0.1.0). As funcionalidades trazidas do
 HeidiSQL e as decisões de cada etapa estão em [`heidisql/`](heidisql/README.md).
@@ -150,7 +150,7 @@ O tempo limite de consulta (preferência) usa o mesmo mecanismo. Nos testes, o c
 ## Segurança
 
 - **Senhas:** ficam no keyring do sistema via Secret Service/D-Bus (`zalando/go-keyring`; no Fedora,
-  GNOME Keyring ou KWallet), com a chave `connection:<uuid>` no serviço `dbstudio`. Se o keyring
+  GNOME Keyring ou KWallet), com a chave `connection:<uuid>` no serviço `anansi`. Se o keyring
   estiver indisponível, **nada vai para o disco**: a senha fica só na memória do processo durante a
   sessão e é pedida novamente após reiniciar. A UI avisa sobre isso.
 - O frontend **nunca recebe senhas**, apenas `hasStoredPassword`. Arquivos locais têm permissão `0600`, e
@@ -174,7 +174,7 @@ O tempo limite de consulta (preferência) usa o mesmo mecanismo. Nos testes, o c
 
 ## Persistência local
 
-Diretório: `$XDG_CONFIG_HOME/dbstudio` (normalmente `~/.config/dbstudio`), ou `$DBSTUDIO_CONFIG_DIR`.
+Diretório: `$XDG_CONFIG_HOME/anansi` (normalmente `~/.config/anansi`), ou `$ANANSI_CONFIG_DIR`.
 
 | Arquivo | Conteúdo |
 |---|---|

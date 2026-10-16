@@ -7,8 +7,8 @@ import (
 	"strings"
 	"testing"
 
-	"dbstudio/internal/apperr"
-	"dbstudio/internal/security"
+	"anansi/internal/apperr"
+	"anansi/internal/security"
 )
 
 func TestExportImportWithoutSecrets(t *testing.T) {

@@ -9,7 +9,7 @@ import (
 	"unicode/utf16"
 	"unicode/utf8"
 
-	"dbstudio/internal/database"
+	"anansi/internal/database"
 )
 
 // Catalog provides metadata for completion. Implementations should be

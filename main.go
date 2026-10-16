@@ -11,8 +11,8 @@ import (
 	"github.com/wailsapp/wails/v2/pkg/options/assetserver"
 	"github.com/wailsapp/wails/v2/pkg/options/linux"
 
-	"dbstudio/internal/api"
-	"dbstudio/internal/security"
+	"anansi/internal/api"
+	"anansi/internal/security"
 )
 
 //go:embed all:frontend/dist
@@ -25,14 +25,15 @@ func main() {
 	// Logs go to stderr and never include SQL text, DSNs or passwords.
 	log := slog.New(slog.NewTextHandler(os.Stderr, &slog.HandlerOptions{Level: slog.LevelInfo}))
 
-	app, err := api.New(log, security.NewKeyring("dbstudio"))
+	// Secrets saved under the previous name (dbstudio) move to "anansi".
+	app, err := api.New(log, security.NewKeyring("anansi", "dbstudio"))
 	if err != nil {
 		log.Error("startup failed", "error", err.Error())
 		os.Exit(1)
 	}
 
 	err = wails.Run(&options.App{
-		Title:     "Database Studio",
+		Title:     "Anansi",
 		Width:     1360,
 		Height:    860,
 		MinWidth:  820,
@@ -47,7 +48,7 @@ func main() {
 		Bind:             []interface{}{app},
 		Linux: &linux.Options{
 			Icon:                icon,
-			ProgramName:         "dbstudio",
+			ProgramName:         "anansi",
 			WebviewGpuPolicy:    linux.WebviewGpuPolicyOnDemand,
 			WindowIsTranslucent: false,
 		},

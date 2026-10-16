@@ -8,13 +8,13 @@ import (
 	"strings"
 	"testing"
 
-	"dbstudio/internal/connections"
-	"dbstudio/internal/csvimport"
-	"dbstudio/internal/database"
-	"dbstudio/internal/dump"
-	"dbstudio/internal/query"
-	"dbstudio/internal/sqlfile"
-	"dbstudio/internal/sqllex"
+	"anansi/internal/connections"
+	"anansi/internal/csvimport"
+	"anansi/internal/database"
+	"anansi/internal/dump"
+	"anansi/internal/query"
+	"anansi/internal/sqlfile"
+	"anansi/internal/sqllex"
 )
 
 type quietProgress struct{ warns []string }

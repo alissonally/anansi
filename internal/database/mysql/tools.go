@@ -5,7 +5,7 @@ import (
 	"strconv"
 	"strings"
 
-	"dbstudio/internal/database"
+	"anansi/internal/database"
 )
 
 // ---- maintenance (HeidiSQL table tools) --------------------------------------------

@@ -6,10 +6,10 @@ import (
 	"strings"
 	"time"
 
-	"dbstudio/internal/apperr"
-	"dbstudio/internal/connections"
-	"dbstudio/internal/database"
-	"dbstudio/internal/query"
+	"anansi/internal/apperr"
+	"anansi/internal/connections"
+	"anansi/internal/database"
+	"anansi/internal/query"
 )
 
 // SchemaDiffItem is one object of a structure comparison.

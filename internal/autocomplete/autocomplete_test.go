@@ -6,7 +6,7 @@ import (
 	"strings"
 	"testing"
 
-	"dbstudio/internal/database"
+	"anansi/internal/database"
 )
 
 type fakeCatalog struct {

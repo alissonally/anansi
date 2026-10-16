@@ -8,8 +8,8 @@ import (
 	"strconv"
 	"strings"
 
-	"dbstudio/internal/database"
-	"dbstudio/internal/sqllex"
+	"anansi/internal/database"
+	"anansi/internal/sqllex"
 )
 
 var _ database.ObjectEditor = (*Driver)(nil)

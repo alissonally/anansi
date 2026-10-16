@@ -5,8 +5,8 @@ import (
 	"database/sql"
 	"errors"
 
-	"dbstudio/internal/apperr"
-	"dbstudio/internal/connections"
+	"anansi/internal/apperr"
+	"anansi/internal/connections"
 )
 
 // noTruncate disables the per-cell size cap of exports.

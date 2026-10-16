@@ -5,10 +5,10 @@ import (
 	"strings"
 	"time"
 
-	"dbstudio/internal/apperr"
-	"dbstudio/internal/connections"
-	"dbstudio/internal/database"
-	"dbstudio/internal/query"
+	"anansi/internal/apperr"
+	"anansi/internal/connections"
+	"anansi/internal/database"
+	"anansi/internal/query"
 )
 
 func (a *App) objectEditor(id string) (*connections.Session, database.ObjectEditor, error) {
@@ -139,7 +139,7 @@ func (a *App) SaveViewDef(id string, v database.ViewDef, confirmed bool) ([]quer
 // ---- routines and triggers (recreated safely) --------------------------------------
 
 func tempName(name string) string {
-	n := name + "_dbstudio_tmp"
+	n := name + "_anansi_tmp"
 	if r := []rune(n); len(r) > 64 {
 		n = string(r[len(r)-64:])
 	}

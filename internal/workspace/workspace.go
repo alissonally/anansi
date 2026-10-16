@@ -10,8 +10,8 @@ import (
 	"sync"
 	"time"
 
-	"dbstudio/internal/apperr"
-	"dbstudio/internal/config"
+	"anansi/internal/apperr"
+	"anansi/internal/config"
 )
 
 // Version is the schema version of workspace.json.

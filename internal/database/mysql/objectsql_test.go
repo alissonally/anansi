@@ -3,7 +3,7 @@ package mysql
 import (
 	"testing"
 
-	"dbstudio/internal/database"
+	"anansi/internal/database"
 )
 
 func TestObjectSQL(t *testing.T) {

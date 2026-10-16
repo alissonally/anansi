@@ -4,9 +4,9 @@ import (
 	"strings"
 	"testing"
 
-	"dbstudio/internal/api"
-	"dbstudio/internal/database"
-	"dbstudio/internal/query"
+	"anansi/internal/api"
+	"anansi/internal/database"
+	"anansi/internal/query"
 )
 
 func noErrors(t *testing.T, res []query.AdminResult, err error) {

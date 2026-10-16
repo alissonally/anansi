@@ -13,9 +13,9 @@ import (
 	"sync"
 	"time"
 
-	"dbstudio/internal/apperr"
-	"dbstudio/internal/connections"
-	"dbstudio/internal/database"
+	"anansi/internal/apperr"
+	"anansi/internal/connections"
+	"anansi/internal/database"
 )
 
 // TTL is how long cached metadata is considered fresh.

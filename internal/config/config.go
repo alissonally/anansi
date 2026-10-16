@@ -13,23 +13,38 @@ import (
 )
 
 // AppDirName is the directory name under the user's config dir.
-const AppDirName = "dbstudio"
+const AppDirName = "anansi"
+
+// legacyDirName is the directory used before the app was renamed to Anansi.
+const legacyDirName = "dbstudio"
 
 // Dir returns the configuration directory (respecting $XDG_CONFIG_HOME) and
-// creates it with owner-only permissions. DBSTUDIO_CONFIG_DIR overrides it.
+// creates it with owner-only permissions. ANANSI_CONFIG_DIR overrides it.
+// A configuration left by the previous name (dbstudio) is moved on first use.
 func Dir() (string, error) {
-	dir := os.Getenv("DBSTUDIO_CONFIG_DIR")
+	dir := os.Getenv("ANANSI_CONFIG_DIR")
 	if dir == "" {
 		base, err := os.UserConfigDir()
 		if err != nil {
 			return "", err
 		}
 		dir = filepath.Join(base, AppDirName)
+		migrateLegacyDir(filepath.Join(base, legacyDirName), dir)
 	}
 	if err := os.MkdirAll(dir, 0o700); err != nil {
 		return "", err
 	}
 	return dir, nil
+}
+
+// migrateLegacyDir renames old to dir when only old exists (best effort).
+func migrateLegacyDir(old, dir string) {
+	if _, err := os.Stat(dir); !errors.Is(err, fs.ErrNotExist) {
+		return
+	}
+	if st, err := os.Stat(old); err == nil && st.IsDir() {
+		_ = os.Rename(old, dir)
+	}
 }
 
 // Envelope wraps every persisted document with a schema version.

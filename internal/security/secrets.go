@@ -31,13 +31,18 @@ type SecretStore interface {
 // D-Bus: GNOME Keyring or KWallet).
 type Keyring struct {
 	Service string
+	// Legacy are previous service names; their secrets are read (and moved)
+	// when the current service has none.
+	Legacy []string
 
 	once      sync.Once
 	available bool
 }
 
 // NewKeyring creates a keyring-backed store.
-func NewKeyring(service string) *Keyring { return &Keyring{Service: service} }
+func NewKeyring(service string, legacy ...string) *Keyring {
+	return &Keyring{Service: service, Legacy: legacy}
+}
 
 // Available probes the keyring once.
 func (k *Keyring) Available() bool {
@@ -55,6 +60,15 @@ func (k *Keyring) Get(key string) (string, error) {
 	}
 	s, err := keyring.Get(k.Service, key)
 	if errors.Is(err, keyring.ErrNotFound) {
+		// Secrets saved under a previous service name move to the current one.
+		for _, old := range k.Legacy {
+			if v, lerr := keyring.Get(old, key); lerr == nil {
+				if keyring.Set(k.Service, key, v) == nil {
+					_ = keyring.Delete(old, key)
+				}
+				return v, nil
+			}
+		}
 		return "", ErrNotFound
 	}
 	if err != nil {
@@ -78,6 +92,9 @@ func (k *Keyring) Set(key, secret string) error {
 func (k *Keyring) Delete(key string) error {
 	if !k.Available() {
 		return nil
+	}
+	for _, old := range k.Legacy {
+		_ = keyring.Delete(old, key)
 	}
 	err := keyring.Delete(k.Service, key)
 	if err != nil && !errors.Is(err, keyring.ErrNotFound) {

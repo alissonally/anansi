@@ -9,18 +9,18 @@ import (
 	"strings"
 	"testing"
 
-	"dbstudio/internal/api"
-	"dbstudio/internal/apperr"
-	"dbstudio/internal/connections"
-	"dbstudio/internal/database"
-	"dbstudio/internal/query"
-	"dbstudio/internal/security"
+	"anansi/internal/api"
+	"anansi/internal/apperr"
+	"anansi/internal/connections"
+	"anansi/internal/database"
+	"anansi/internal/query"
+	"anansi/internal/security"
 )
 
 // newApp builds the real application facade on a temporary config dir.
 func newApp(t *testing.T, tg target, mutate ...func(*connections.Profile)) (*api.App, string) {
 	t.Helper()
-	t.Setenv("DBSTUDIO_CONFIG_DIR", t.TempDir())
+	t.Setenv("ANANSI_CONFIG_DIR", t.TempDir())
 	app, err := api.New(slog.New(slog.NewTextHandler(io.Discard, nil)), security.NewMemory())
 	if err != nil {
 		t.Fatal(err)

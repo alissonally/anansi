@@ -54,7 +54,7 @@ const readOnly = computed(() => props.tab.kind === 'view')
 
 // ---- per-table settings remembered across sessions (HeidiSQL option) ----
 interface Saved { filter: string; sort: SortSpec[]; hidden: string[]; history: string[] }
-const storeKey = computed(() => `dbstudio:grid:${conn.value}:${db.value}.${table.value}`)
+const storeKey = computed(() => `anansi:grid:${conn.value}:${db.value}.${table.value}`)
 function readSaved(): Saved {
   try {
     const s = JSON.parse(localStorage.getItem(storeKey.value) ?? '{}') as Partial<Saved>

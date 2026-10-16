@@ -4,7 +4,7 @@ import (
 	"strings"
 	"testing"
 
-	"dbstudio/internal/database"
+	"anansi/internal/database"
 )
 
 func TestCreateDatabaseSQL(t *testing.T) {

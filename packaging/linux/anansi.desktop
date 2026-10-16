@@ -1,11 +1,11 @@
 [Desktop Entry]
 Type=Application
-Name=Database Studio
+Name=Anansi
 GenericName=Gerenciador de bancos de dados
 Comment=Gerenciador de bancos de dados MySQL e MariaDB
-Exec=dbstudio
-Icon=dbstudio
+Exec=anansi
+Icon=anansi
 Terminal=false
 Categories=Development;Database;
 Keywords=mysql;mariadb;sql;database;
-StartupWMClass=dbstudio
+StartupWMClass=anansi

@@ -11,10 +11,10 @@ import (
 	"testing"
 	"time"
 
-	"dbstudio/internal/apperr"
-	"dbstudio/internal/database"
-	"dbstudio/internal/database/mysql"
-	"dbstudio/internal/security"
+	"anansi/internal/apperr"
+	"anansi/internal/database"
+	"anansi/internal/database/mysql"
+	"anansi/internal/security"
 )
 
 // unavailableKeyring simulates a system without a Secret Service provider.

@@ -6,7 +6,7 @@ import (
 	"strconv"
 	"strings"
 
-	"dbstudio/internal/database"
+	"anansi/internal/database"
 )
 
 var _ database.ObjectSQL = (*Driver)(nil)

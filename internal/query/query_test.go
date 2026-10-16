@@ -5,9 +5,9 @@ import (
 	"strings"
 	"testing"
 
-	"dbstudio/internal/apperr"
-	"dbstudio/internal/connections"
-	"dbstudio/internal/sqllex"
+	"anansi/internal/apperr"
+	"anansi/internal/connections"
+	"anansi/internal/sqllex"
 )
 
 func TestConvertValue(t *testing.T) {

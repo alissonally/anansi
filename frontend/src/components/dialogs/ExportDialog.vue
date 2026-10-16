@@ -33,7 +33,7 @@ const formats: { id: ExportFormat; label: string; group: string }[] = [
 ]
 const groups = [...new Set(formats.map((f) => f.group))]
 
-const KEY = 'dbstudio:export-options'
+const KEY = 'anansi:export-options'
 function defaults(): ExportOptions {
   return { format: 'csv', separator: ';', encloser: '"', lineTerminator: '\\n', nullText: '\\N', header: true, removeLineBreaks: false, table: '', query: '', skipAutoIncrement: false, rowsPerInsert: 100 }
 }

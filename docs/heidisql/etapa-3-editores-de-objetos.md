@@ -81,7 +81,7 @@ O campo **definer** sugere as contas de `mysql.user` (quando o usuário pode lê
 O servidor não altera o corpo dessas rotinas: é preciso recriá-las. O HeidiSQL cria uma cópia temporária para
 validar a sintaxe; aqui o fluxo completo é:
 
-1. criar a nova versão com nome temporário (`<nome>_dbstudio_tmp`) — se falhar, nada foi tocado;
+1. criar a nova versão com nome temporário (`<nome>_anansi_tmp`) — se falhar, nada foi tocado;
 2. remover a cópia temporária;
 3. remover a versão atual e criar a nova;
 4. se a criação final falhar, **restaurar a versão anterior** a partir do seu `SHOW CREATE` (o HeidiSQL faz

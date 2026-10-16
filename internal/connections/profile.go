@@ -11,11 +11,11 @@ import (
 	"sync"
 	"time"
 
-	"dbstudio/internal/apperr"
-	"dbstudio/internal/config"
-	"dbstudio/internal/database"
-	"dbstudio/internal/sqllex"
-	"dbstudio/internal/sshtunnel"
+	"anansi/internal/apperr"
+	"anansi/internal/config"
+	"anansi/internal/database"
+	"anansi/internal/sqllex"
+	"anansi/internal/sshtunnel"
 )
 
 // Environment classifies a connection to reduce the risk of running SQL in

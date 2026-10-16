@@ -1,4 +1,4 @@
-module dbstudio
+module anansi
 
 go 1.25.0
 

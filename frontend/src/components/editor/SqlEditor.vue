@@ -258,12 +258,12 @@ onMounted(() => {
   editor.value = ed
   stmtDecorations = ed.createDecorationsCollection()
 
-  ed.addAction({ id: 'dbstudio.runStatement', label: 'Executar instrução sob o cursor', keybindings: [monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter], contextMenuGroupId: 'navigation', contextMenuOrder: 1, run: () => run('statement') })
-  ed.addAction({ id: 'dbstudio.runScript', label: 'Executar script', keybindings: [monaco.KeyMod.CtrlCmd | monaco.KeyMod.Shift | monaco.KeyCode.Enter, monaco.KeyCode.F5], contextMenuGroupId: 'navigation', contextMenuOrder: 2, run: () => run('script') })
-  ed.addAction({ id: 'dbstudio.cancel', label: 'Cancelar execução', keybindings: [monaco.KeyMod.CtrlCmd | monaco.KeyMod.Alt | monaco.KeyCode.KeyC], run: () => { if (tabs.active) void tabs.cancel(tabs.active.id) } })
-  ed.addAction({ id: 'dbstudio.format', label: 'Formatar SQL', keybindings: [monaco.KeyMod.Shift | monaco.KeyMod.Alt | monaco.KeyCode.KeyF], contextMenuGroupId: '1_modification', run: format })
-  ed.addAction({ id: 'dbstudio.explain', label: 'EXPLAIN da instrução', keybindings: [monaco.KeyMod.CtrlCmd | monaco.KeyMod.Shift | monaco.KeyCode.KeyE], contextMenuGroupId: 'navigation', contextMenuOrder: 3, run: () => explain() })
-  ed.addAction({ id: 'dbstudio.help', label: 'Ajuda SQL da palavra sob o cursor', keybindings: [monaco.KeyCode.F1], contextMenuGroupId: 'navigation', contextMenuOrder: 4, run: () => emit('help', wordAtCursor()) })
+  ed.addAction({ id: 'anansi.runStatement', label: 'Executar instrução sob o cursor', keybindings: [monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter], contextMenuGroupId: 'navigation', contextMenuOrder: 1, run: () => run('statement') })
+  ed.addAction({ id: 'anansi.runScript', label: 'Executar script', keybindings: [monaco.KeyMod.CtrlCmd | monaco.KeyMod.Shift | monaco.KeyCode.Enter, monaco.KeyCode.F5], contextMenuGroupId: 'navigation', contextMenuOrder: 2, run: () => run('script') })
+  ed.addAction({ id: 'anansi.cancel', label: 'Cancelar execução', keybindings: [monaco.KeyMod.CtrlCmd | monaco.KeyMod.Alt | monaco.KeyCode.KeyC], run: () => { if (tabs.active) void tabs.cancel(tabs.active.id) } })
+  ed.addAction({ id: 'anansi.format', label: 'Formatar SQL', keybindings: [monaco.KeyMod.Shift | monaco.KeyMod.Alt | monaco.KeyCode.KeyF], contextMenuGroupId: '1_modification', run: format })
+  ed.addAction({ id: 'anansi.explain', label: 'EXPLAIN da instrução', keybindings: [monaco.KeyMod.CtrlCmd | monaco.KeyMod.Shift | monaco.KeyCode.KeyE], contextMenuGroupId: 'navigation', contextMenuOrder: 3, run: () => explain() })
+  ed.addAction({ id: 'anansi.help', label: 'Ajuda SQL da palavra sob o cursor', keybindings: [monaco.KeyCode.F1], contextMenuGroupId: 'navigation', contextMenuOrder: 4, run: () => emit('help', wordAtCursor()) })
 
   disposables.push(
     registerCompletion((model) => {
@@ -288,7 +288,7 @@ onMounted(() => {
       const a = model.getPositionAt(hit.start)
       const b = model.getPositionAt(hit.end)
       // Applied after the current edit so the typed character stays put.
-      queueMicrotask(() => ed.executeEdits('dbstudio.uppercase', [{ range: new monaco.Range(a.lineNumber, a.column, b.lineNumber, b.column), text: hit.upper }]))
+      queueMicrotask(() => ed.executeEdits('anansi.uppercase', [{ range: new monaco.Range(a.lineNumber, a.column, b.lineNumber, b.column), text: hit.upper }]))
     }),
   )
   showTab(tabs.activeId)

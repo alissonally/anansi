@@ -3,11 +3,11 @@ package api
 import (
 	"context"
 
-	"dbstudio/internal/apperr"
-	"dbstudio/internal/connections"
-	"dbstudio/internal/database"
-	"dbstudio/internal/query"
-	"dbstudio/internal/sqllex"
+	"anansi/internal/apperr"
+	"anansi/internal/connections"
+	"anansi/internal/database"
+	"anansi/internal/query"
+	"anansi/internal/sqllex"
 )
 
 // session returns an open session after validating the id.

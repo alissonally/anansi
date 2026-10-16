@@ -1,11 +1,11 @@
 # Paridade com o HeidiSQL — plano e registro das etapas
 
-Este diretório documenta o trabalho de trazer para o Database Studio as funcionalidades do
+Este diretório documenta o trabalho de trazer para o Anansi as funcionalidades do
 [HeidiSQL](https://www.heidisql.com/) (código-fonte lido em `~/dev/HeidiSQL/source`, Delphi), adaptando-as
 à arquitetura Wails + Go + Vue do projeto e melhorando o que fosse possível.
 
 - [`inventario.md`](inventario.md) — inventário das funcionalidades do HeidiSQL, com o status de cada uma no
-  Database Studio.
+  Anansi.
 - `etapa-N-*.md` — registro de cada etapa: o que foi feito, decisões, SQL gerado, testes e pendências.
 
 ## Princípios

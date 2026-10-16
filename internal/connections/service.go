@@ -5,9 +5,9 @@ import (
 	"errors"
 	"strings"
 
-	"dbstudio/internal/apperr"
-	"dbstudio/internal/database"
-	"dbstudio/internal/security"
+	"anansi/internal/apperr"
+	"anansi/internal/database"
+	"anansi/internal/security"
 )
 
 // ProfileView is a profile plus credential status, safe to send to the UI.

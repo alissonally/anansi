@@ -10,8 +10,8 @@ import (
 
 	"github.com/wailsapp/wails/v2/pkg/runtime"
 
-	"dbstudio/internal/database/sqllog"
-	"dbstudio/internal/history"
+	"anansi/internal/database/sqllog"
+	"anansi/internal/history"
 )
 
 // sqlLogCapacity is how many statements the SQL log keeps in memory.

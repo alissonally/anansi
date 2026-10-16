@@ -304,7 +304,7 @@ window.addEventListener('beforeunload', () => void tabs.flush())
       </div>
       <div v-if="!active && ready" class="welcome">
         <Icon name="database" :size="40" />
-        <h1>Database Studio</h1>
+        <h1>Anansi</h1>
         <template v-if="!conns.profiles.length">
           <p>Comece cadastrando uma conexão MySQL ou MariaDB.</p>
           <button class="btn primary" @click="ui.openConnectionDialog()"><Icon name="plus" :size="14" /> Adicionar conexão</button>

@@ -9,7 +9,7 @@ import (
 	"strings"
 	"unicode/utf8"
 
-	"dbstudio/internal/database"
+	"anansi/internal/database"
 )
 
 var _ database.DDLBuilder = (*Driver)(nil)

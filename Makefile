@@ -1,4 +1,4 @@
-# Database Studio — common tasks. Run `make help`.
+# Anansi — common tasks. Run `make help`.
 WAILS ?= $(shell command -v wails 2>/dev/null || echo $(HOME)/go/bin/wails)
 TAGS  := webkit2_41
 
@@ -15,7 +15,7 @@ deps: ## Install Go modules, npm packages and the Wails CLI
 dev: ## Run in development mode with hot reload
 	$(WAILS) dev -tags $(TAGS)
 
-build: ## Build the desktop binary (build/bin/dbstudio)
+build: ## Build the desktop binary (build/bin/anansi)
 	$(WAILS) build -clean -trimpath -tags $(TAGS) -ldflags "-s -w"
 
 package: ## Build tar.gz and RPM packages into dist/

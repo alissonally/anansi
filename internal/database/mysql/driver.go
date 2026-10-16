@@ -19,8 +19,8 @@ import (
 
 	gomysql "github.com/go-sql-driver/mysql"
 
-	"dbstudio/internal/database"
-	"dbstudio/internal/database/sqllog"
+	"anansi/internal/database"
+	"anansi/internal/database/sqllog"
 )
 
 // Driver implements database.Driver, database.Canceller and
@@ -447,7 +447,7 @@ func (d *Driver) Warnings(ctx context.Context, conn *sql.Conn) ([]database.Warni
 // ClearWarningsSQL implements database.Warner. MySQL resets warnings on
 // almost every statement; MariaDB only on statements that use a table, and
 // a derived table counts.
-func (d *Driver) ClearWarningsSQL() string { return "SELECT 1 FROM (SELECT 1) AS dbstudio_reset" }
+func (d *Driver) ClearWarningsSQL() string { return "SELECT 1 FROM (SELECT 1) AS anansi_reset" }
 
 // ProfileSQL implements database.Profiler with the session profiler
 // (deprecated in MySQL 8 but still available, and native in MariaDB).

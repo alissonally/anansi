@@ -6,10 +6,10 @@ import (
 	"strings"
 	"time"
 
-	"dbstudio/internal/apperr"
-	"dbstudio/internal/connections"
-	"dbstudio/internal/database"
-	"dbstudio/internal/query"
+	"anansi/internal/apperr"
+	"anansi/internal/connections"
+	"anansi/internal/database"
+	"anansi/internal/query"
 )
 
 // maxFullCell caps values read in full (cell viewer/editor of truncated

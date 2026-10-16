@@ -7,8 +7,8 @@ import (
 	"regexp"
 	"strings"
 
-	"dbstudio/internal/database"
-	"dbstudio/internal/sqllex"
+	"anansi/internal/database"
+	"anansi/internal/sqllex"
 )
 
 // definerSQL renders DEFINER=`user`@`host` from "user@host" ("" = none).

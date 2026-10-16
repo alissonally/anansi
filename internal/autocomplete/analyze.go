@@ -12,7 +12,7 @@ package autocomplete
 import (
 	"strings"
 
-	"dbstudio/internal/sqllex"
+	"anansi/internal/sqllex"
 )
 
 // TableRef is a table (or derived table) visible at the cursor.

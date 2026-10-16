@@ -12,12 +12,12 @@ import (
 	"time"
 	"unicode/utf8"
 
-	"dbstudio/internal/apperr"
-	"dbstudio/internal/autocomplete"
-	"dbstudio/internal/config"
-	"dbstudio/internal/database"
-	"dbstudio/internal/query"
-	"dbstudio/internal/sqllex"
+	"anansi/internal/apperr"
+	"anansi/internal/autocomplete"
+	"anansi/internal/config"
+	"anansi/internal/database"
+	"anansi/internal/query"
+	"anansi/internal/sqllex"
 )
 
 // ---- editable query results ---------------------------------------------------

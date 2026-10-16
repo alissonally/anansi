@@ -13,7 +13,7 @@ sessões, com cinco seções:
 | Colunas | colunas da tabela escolhida (do database da aba); duplo clique insere o nome; geradores de SELECT/INSERT/UPDATE/DELETE com as colunas marcadas (ou todas) e WHERE pela chave |
 | Ajuda SQL | a ajuda do **próprio servidor** (`HELP 'contents'`, categorias, tópicos com descrição e exemplo, busca com `%`); **F1** no editor abre o tópico da palavra sob o cursor (com busca por prefixo se não houver tópico exato) |
 | Funções e palavras-chave | funções com assinatura e palavras reservadas do autocomplete; duplo clique insere |
-| Snippets | arquivos `.sql` em `~/.config/dbstudio/snippets` (compatível com a ideia do HeidiSQL de snippets em pasta): inserir, criar a partir da seleção ou da aba, renomear, excluir, abrir a pasta |
+| Snippets | arquivos `.sql` em `~/.config/anansi/snippets` (compatível com a ideia do HeidiSQL de snippets em pasta): inserir, criar a partir da seleção ou da aba, renomear, excluir, abrir a pasta |
 | Parâmetros | parâmetros `:nome` encontrados no SQL da aba, com o valor de cada um |
 
 A ajuda vem das tabelas `help_*` do servidor em vez da lista de funções embutida no HeidiSQL: está sempre na

@@ -8,12 +8,12 @@ import (
 	"testing"
 	"time"
 
-	"dbstudio/internal/apperr"
-	"dbstudio/internal/connections"
-	"dbstudio/internal/database"
-	"dbstudio/internal/database/mysql"
-	"dbstudio/internal/database/sqllog"
-	"dbstudio/internal/query"
+	"anansi/internal/apperr"
+	"anansi/internal/connections"
+	"anansi/internal/database"
+	"anansi/internal/database/mysql"
+	"anansi/internal/database/sqllog"
+	"anansi/internal/query"
 )
 
 // objectsFixture creates a database with a table hierarchy, a view, routines,

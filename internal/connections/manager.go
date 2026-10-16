@@ -7,11 +7,11 @@ import (
 	"sync"
 	"time"
 
-	"dbstudio/internal/apperr"
-	"dbstudio/internal/database"
-	"dbstudio/internal/database/sqllog"
-	"dbstudio/internal/security"
-	"dbstudio/internal/sshtunnel"
+	"anansi/internal/apperr"
+	"anansi/internal/database"
+	"anansi/internal/database/sqllog"
+	"anansi/internal/security"
+	"anansi/internal/sshtunnel"
 )
 
 // Session is a live connection pool opened from a profile. Several SQL tabs

@@ -4,8 +4,8 @@ import (
 	"context"
 	"time"
 
-	"dbstudio/internal/apperr"
-	"dbstudio/internal/database"
+	"anansi/internal/apperr"
+	"anansi/internal/database"
 )
 
 func (a *App) ddlBuilder(id string) (database.DDLBuilder, error) {

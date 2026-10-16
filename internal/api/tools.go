@@ -10,12 +10,12 @@ import (
 	"strings"
 	"time"
 
-	"dbstudio/internal/apperr"
-	"dbstudio/internal/connections"
-	"dbstudio/internal/database"
-	"dbstudio/internal/database/mysql"
-	"dbstudio/internal/query"
-	"dbstudio/internal/tasks"
+	"anansi/internal/apperr"
+	"anansi/internal/connections"
+	"anansi/internal/database"
+	"anansi/internal/database/mysql"
+	"anansi/internal/query"
+	"anansi/internal/tasks"
 )
 
 // The table tools and the user manager generate MySQL/MariaDB-specific SQL.

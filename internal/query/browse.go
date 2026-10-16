@@ -4,9 +4,9 @@ import (
 	"context"
 	"time"
 
-	"dbstudio/internal/apperr"
-	"dbstudio/internal/connections"
-	"dbstudio/internal/database"
+	"anansi/internal/apperr"
+	"anansi/internal/connections"
+	"anansi/internal/database"
 )
 
 // BrowseRequest runs one read query for the table data grid (or another

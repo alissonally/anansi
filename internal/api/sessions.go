@@ -7,8 +7,8 @@ import (
 
 	"github.com/wailsapp/wails/v2/pkg/runtime"
 
-	"dbstudio/internal/apperr"
-	"dbstudio/internal/config"
+	"anansi/internal/apperr"
+	"anansi/internal/config"
 )
 
 // TrustSSHHost records the key last presented by an SSH server (after an
@@ -38,7 +38,7 @@ func (a *App) ExportConnections(ids []string) (string, error) {
 	if err != nil {
 		return "", wrap(err)
 	}
-	path, err := runtime.SaveFileDialog(a.ctx, runtime.SaveDialogOptions{Title: "Exportar conexões", DefaultFilename: "conexoes-dbstudio.json", Filters: connFilters})
+	path, err := runtime.SaveFileDialog(a.ctx, runtime.SaveDialogOptions{Title: "Exportar conexões", DefaultFilename: "conexoes-anansi.json", Filters: connFilters})
 	if err != nil || path == "" {
 		return "", wrap(err)
 	}

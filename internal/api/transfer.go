@@ -18,16 +18,16 @@ import (
 	gomysql "github.com/go-sql-driver/mysql"
 	"github.com/wailsapp/wails/v2/pkg/runtime"
 
-	"dbstudio/internal/apperr"
-	"dbstudio/internal/connections"
-	"dbstudio/internal/csvimport"
-	"dbstudio/internal/database"
-	"dbstudio/internal/dump"
-	"dbstudio/internal/gridexport"
-	"dbstudio/internal/query"
-	"dbstudio/internal/sqlfile"
-	"dbstudio/internal/sqllex"
-	"dbstudio/internal/tasks"
+	"anansi/internal/apperr"
+	"anansi/internal/connections"
+	"anansi/internal/csvimport"
+	"anansi/internal/database"
+	"anansi/internal/dump"
+	"anansi/internal/gridexport"
+	"anansi/internal/query"
+	"anansi/internal/sqlfile"
+	"anansi/internal/sqllex"
+	"anansi/internal/tasks"
 )
 
 // ---- tasks -----------------------------------------------------------------------

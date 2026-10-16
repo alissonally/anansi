@@ -6,7 +6,7 @@ import (
 	"encoding/json"
 	"errors"
 
-	"dbstudio/internal/database"
+	"anansi/internal/database"
 )
 
 // Error codes understood by the frontend.

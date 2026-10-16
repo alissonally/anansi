@@ -15,7 +15,7 @@ import (
 	"net"
 	"time"
 
-	"dbstudio/internal/database/sqllog"
+	"anansi/internal/database/sqllog"
 )
 
 // Kind identifies a database engine.

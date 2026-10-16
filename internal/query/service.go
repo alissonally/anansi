@@ -20,10 +20,10 @@ import (
 	"sync"
 	"time"
 
-	"dbstudio/internal/apperr"
-	"dbstudio/internal/connections"
-	"dbstudio/internal/database"
-	"dbstudio/internal/sqllex"
+	"anansi/internal/apperr"
+	"anansi/internal/connections"
+	"anansi/internal/database"
+	"anansi/internal/sqllex"
 )
 
 // Sessions is the subset of connections.Manager used here.

@@ -7,7 +7,7 @@ import (
 	"strings"
 	"time"
 
-	"dbstudio/internal/apperr"
+	"anansi/internal/apperr"
 )
 
 // ExportFile is the format of exported connection settings. It never
@@ -19,7 +19,10 @@ type ExportFile struct {
 	Profiles   []Profile `json:"profiles"`
 }
 
-const exportApp = "dbstudio-connections"
+const exportApp = "anansi-connections"
+
+// legacyExportApp marks files exported before the app was renamed.
+const legacyExportApp = "dbstudio-connections"
 
 // Export serializes the given profiles (all when ids is empty).
 func (s *Service) Export(ids []string) ([]byte, int, error) {
@@ -50,8 +53,8 @@ func (s *Service) Import(data []byte) (int, []string, error) {
 	if err := json.Unmarshal(data, &f); err != nil {
 		return 0, nil, apperr.New(apperr.CodeValidation, "arquivo de conexões inválido: "+err.Error())
 	}
-	if f.App != exportApp {
-		return 0, nil, apperr.New(apperr.CodeValidation, "o arquivo não é uma exportação de conexões do Database Studio")
+	if f.App != exportApp && f.App != legacyExportApp {
+		return 0, nil, apperr.New(apperr.CodeValidation, "o arquivo não é uma exportação de conexões do Anansi")
 	}
 	if f.Version > ProfilesVersion {
 		return 0, nil, apperr.New(apperr.CodeValidation, "o arquivo foi gerado por uma versão mais nova do aplicativo")

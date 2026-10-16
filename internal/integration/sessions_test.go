@@ -8,18 +8,18 @@ import (
 	"strconv"
 	"testing"
 
-	"dbstudio/internal/api"
-	"dbstudio/internal/apperr"
-	"dbstudio/internal/connections"
-	"dbstudio/internal/database"
-	"dbstudio/internal/security"
-	"dbstudio/internal/sshtunnel"
-	"dbstudio/internal/sshtunnel/sshtest"
+	"anansi/internal/api"
+	"anansi/internal/apperr"
+	"anansi/internal/connections"
+	"anansi/internal/database"
+	"anansi/internal/security"
+	"anansi/internal/sshtunnel"
+	"anansi/internal/sshtunnel/sshtest"
 )
 
 func bareApp(t *testing.T) *api.App {
 	t.Helper()
-	t.Setenv("DBSTUDIO_CONFIG_DIR", t.TempDir())
+	t.Setenv("ANANSI_CONFIG_DIR", t.TempDir())
 	app, err := api.New(slog.New(slog.NewTextHandler(io.Discard, nil)), security.NewMemory())
 	if err != nil {
 		t.Fatal(err)
@@ -147,9 +147,9 @@ func TestUnixSocketAndInitScript(t *testing.T) {
 			app, id := newApp(t, tg, func(p *connections.Profile) {
 				p.Host, p.Socket = "", sock
 				p.TLS.Mode = database.TLSDisabled
-				p.InitSQL = "SET @dbstudio_init = 42; SET SESSION sql_mode = CONCAT(@@sql_mode, ',ANSI_QUOTES')"
+				p.InitSQL = "SET @anansi_init = 42; SET SESSION sql_mode = CONCAT(@@sql_mode, ',ANSI_QUOTES')"
 			})
-			if v := scalar(t, app, id, "SELECT @dbstudio_init"); v != "42" {
+			if v := scalar(t, app, id, "SELECT @anansi_init"); v != "42" {
 				t.Fatalf("init script: %s", v)
 			}
 			// ANSI_QUOTES from the script: "a" is an identifier now.
@@ -157,7 +157,7 @@ func TestUnixSocketAndInitScript(t *testing.T) {
 				t.Fatalf("sql_mode from the init script not applied: %v", err)
 			}
 			// Every pooled connection runs the script: a second tab gets its own connection.
-			resp, err := app.Execute(queryReq(id, "SELECT @dbstudio_init"))
+			resp, err := app.Execute(queryReq(id, "SELECT @anansi_init"))
 			if err != nil || resp.Results[0].Error != nil || cell(resp.Results[0].Rows, 0, 0) != "42" {
 				t.Fatalf("%v %+v", err, resp)
 			}

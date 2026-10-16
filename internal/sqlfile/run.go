@@ -12,7 +12,7 @@ import (
 	"io"
 	"strings"
 
-	"dbstudio/internal/sqllex"
+	"anansi/internal/sqllex"
 )
 
 const chunkSize = 4 << 20

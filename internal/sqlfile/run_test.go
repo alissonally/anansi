@@ -6,7 +6,7 @@ import (
 	"strings"
 	"testing"
 
-	"dbstudio/internal/sqllex"
+	"anansi/internal/sqllex"
 )
 
 type nopProgress struct{ warns int }

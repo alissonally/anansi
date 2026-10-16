@@ -5,9 +5,9 @@ import (
 	"testing"
 	"time"
 
-	"dbstudio/internal/api"
-	"dbstudio/internal/database/mysql"
-	"dbstudio/internal/tasks"
+	"anansi/internal/api"
+	"anansi/internal/database/mysql"
+	"anansi/internal/tasks"
 )
 
 func waitTask(t *testing.T, app *api.App, id string) tasks.Task {

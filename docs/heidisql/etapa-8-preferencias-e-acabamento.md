@@ -60,7 +60,7 @@ função, para não roubar teclas de digitação. Os atalhos do editor e das gra
 
 ## Documentação final
 
-- [`inventario.md`](inventario.md): cada funcionalidade do HeidiSQL com o status no Database Studio.
+- [`inventario.md`](inventario.md): cada funcionalidade do HeidiSQL com o status no Anansi.
 - `README.md` do projeto e `docs/architecture.md` atualizados com as funcionalidades e os pacotes novos.
 
 ## Limitações

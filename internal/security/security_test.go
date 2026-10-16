@@ -31,12 +31,12 @@ func TestMemoryStore(t *testing.T) {
 }
 
 // TestSystemKeyring talks to the real Secret Service (GNOME Keyring /
-// KWallet). Opt-in: DBSTUDIO_TEST_KEYRING=1 go test ./internal/security/
+// KWallet). Opt-in: ANANSI_TEST_KEYRING=1 go test ./internal/security/
 func TestSystemKeyring(t *testing.T) {
-	if os.Getenv("DBSTUDIO_TEST_KEYRING") != "1" {
-		t.Skip("set DBSTUDIO_TEST_KEYRING=1 to test the system keyring")
+	if os.Getenv("ANANSI_TEST_KEYRING") != "1" {
+		t.Skip("set ANANSI_TEST_KEYRING=1 to test the system keyring")
 	}
-	k := NewKeyring("dbstudio-test")
+	k := NewKeyring("anansi-test")
 	if !k.Available() {
 		t.Fatal("keyring not available")
 	}

@@ -4,7 +4,7 @@ import (
 	"strings"
 	"testing"
 
-	"dbstudio/internal/database"
+	"anansi/internal/database"
 )
 
 func TestSplitColumnTypeAndEnums(t *testing.T) {

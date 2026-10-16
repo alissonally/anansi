@@ -9,7 +9,7 @@ import (
 
 	gomysql "github.com/go-sql-driver/mysql"
 
-	"dbstudio/internal/database"
+	"anansi/internal/database"
 )
 
 func base() database.ConnectParams {
