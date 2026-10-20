@@ -24,6 +24,7 @@ import TableToolsDialog from './components/dialogs/TableToolsDialog.vue'
 import CopyTableDialog from './components/dialogs/CopyTableDialog.vue'
 import GenerateDataDialog from './components/dialogs/GenerateDataDialog.vue'
 import CompareDialog from './components/dialogs/CompareDialog.vue'
+import DatabaseFilterDialog from './components/dialogs/DatabaseFilterDialog.vue'
 import { useSettingsStore } from './stores/settings'
 import { useConnectionsStore } from './stores/connections'
 import { useTabsStore } from './stores/tabs'
@@ -196,7 +197,7 @@ function toggleEditorResults() {
 }
 
 function onKey(e: KeyboardEvent) {
-  if (ui.confirmState || ui.promptState || ui.connectionDialog.open || ui.ddlDialog || ui.exportDialog || ui.dumpDialog || ui.csvDialog || ui.toolsDialog || ui.copyTableDialog || ui.generateDialog || ui.compareDialog || ui.preferencesOpen) return
+  if (ui.confirmState || ui.promptState || ui.connectionDialog.open || ui.ddlDialog || ui.exportDialog || ui.dumpDialog || ui.csvDialog || ui.toolsDialog || ui.copyTableDialog || ui.generateDialog || ui.compareDialog || ui.databaseFilterDialog || ui.preferencesOpen) return
   const mod = e.ctrlKey || e.metaKey
   const handled = () => { e.preventDefault(); e.stopPropagation() }
   // Ctrl+Enter from the helpers panel (e.g. after typing a parameter) runs the tab.
@@ -334,6 +335,7 @@ window.addEventListener('beforeunload', () => void tabs.flush())
   <CopyTableDialog />
   <GenerateDataDialog />
   <CompareDialog />
+  <DatabaseFilterDialog />
   <TasksPanel />
   <ConfirmDialog />
   <PromptDialog />

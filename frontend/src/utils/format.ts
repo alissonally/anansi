@@ -59,3 +59,11 @@ export function textMatcher(text: string): (s: string) => boolean {
   })
   return (s: string) => tests.some((t) => t(s))
 }
+
+/** Profile.databaseFilter ("loja_*; relatorios") → matcher (case-insensitive; empty matches all). */
+export function globMatcher(spec: string | undefined): (name: string) => boolean {
+  const parts = (spec ?? '').split(';').map((x) => x.trim()).filter(Boolean)
+  if (!parts.length) return () => true
+  const res = parts.map((g) => new RegExp('^' + g.replace(/[.+^${}()|[\]\\]/g, '\\$&').replace(/\*/g, '.*').replace(/\?/g, '.') + '$', 'i'))
+  return (name) => res.some((r) => r.test(name))
+}

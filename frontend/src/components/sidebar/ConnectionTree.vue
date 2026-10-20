@@ -10,7 +10,7 @@ import Icon, { type IconName } from '../common/Icon.vue'
 import ContextMenu, { type MenuItem } from '../common/ContextMenu.vue'
 import type { ColumnInfo, DatabaseInfo, EventInfo, IndexInfo, ObjectKind, ObjectRef, ProfileView, RoutineInfo, TableInfo, TableRef, TriggerInfo } from '../../api/types'
 import { forceQuoteIdent, quoteIdent } from '../../utils/text'
-import { formatCount, textMatcher } from '../../utils/format'
+import { formatCount, globMatcher, textMatcher } from '../../utils/format'
 import { kindLabels, useObjectActions } from '../../composables/objectActions'
 import { tableStatement, type StatementKind } from '../../composables/templates'
 import { routineCall } from '../../composables/templates'
@@ -64,14 +64,6 @@ const groupDefs: { id: string; label: string; icon: IconName; kind: ObjectKind }
 const collapsedFolders = ref(new Set<string>())
 function isOpen(r: Row): boolean {
   return r.kind === 'folder' ? !collapsedFolders.value.has(r.key) : expanded.value.has(r.key)
-}
-
-/** "loja_*; relatorios" → matcher (case-insensitive; empty matches all). */
-function globMatcher(spec: string | undefined): (name: string) => boolean {
-  const parts = (spec ?? '').split(';').map((x) => x.trim()).filter(Boolean)
-  if (!parts.length) return () => true
-  const res = parts.map((g) => new RegExp('^' + g.replace(/[.+^${}()|[\]\\]/g, '\\$&').replace(/\*/g, '.*').replace(/\?/g, '.') + '$', 'i'))
-  return (name) => res.some((r) => r.test(name))
 }
 
 const rows = computed<Row[]>(() => {
@@ -428,6 +420,7 @@ function openMenu(e: MouseEvent, r: Row) {
         { label: 'Executar arquivo SQL…', icon: 'upload', disabled: !connected, action: () => actions.runSqlFile(p.id, '') },
         { label: 'Gerenciar usuários', icon: 'user', disabled: !connected, action: () => tabs.openObject({ kind: 'users', connectionId: p.id }) },
         { label: 'Ferramentas', icon: 'wrench', disabled: !connected, children: toolsMenu(p.id, []) },
+        { label: 'Filtrar databases…', icon: 'filter', disabled: !connected, action: () => (ui.databaseFilterDialog = { connectionId: p.id }) },
         { label: 'Atualizar', icon: 'refresh', action: () => refresh(r), disabled: !connected },
         { label: 'Recolher tudo', action: () => collapseAll(p.id) },
         sep,
@@ -614,6 +607,10 @@ function onDblClick(r: Row) {
         <span v-if="r.loading" class="spinner" />
         <Icon v-else :name="r.icon" :size="14" class="ico" />
         <span class="label ellipsis" :class="{ err: r.error }">{{ r.label }}</span>
+        <button
+          v-if="r.kind === 'connection' && r.profile!.databaseFilter" class="icon-btn filter-flag" title="Filtro de databases ativo — clique para editar"
+          aria-label="Filtro de databases ativo" @click.stop="ui.databaseFilterDialog = { connectionId: r.conn }"
+        ><Icon name="filter" :size="12" /></button>
         <span v-if="r.kind === 'connection' && r.profile!.environment === 'production'" class="badge env-badge env-production">prod</span>
         <span v-if="r.detail" class="detail ellipsis">{{ r.detail }}</span>
         <span v-if="r.kind === 'connection'" class="conn-actions">
@@ -728,6 +725,12 @@ function onDblClick(r: Row) {
   height: 16px;
   border-radius: 2px;
   flex: none;
+}
+.filter-flag {
+  flex: none;
+  width: 18px;
+  height: 18px;
+  color: var(--accent);
 }
 .conn-actions {
   display: none;
