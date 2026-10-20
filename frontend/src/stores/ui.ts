@@ -83,6 +83,7 @@ export const useUiStore = defineStore('ui', () => {
   const copyTableDialog = ref<{ connectionId: string; database: string; table: string } | null>(null)
   const generateDialog = ref<{ connectionId: string; database: string; table: string } | null>(null)
   const compareDialog = ref<{ connectionId: string; database: string } | null>(null)
+  const databaseFilterDialog = ref<{ connectionId: string } | null>(null)
   let nextId = 1
 
   function toast(kind: ToastKind, message: string, timeoutMs = kind === 'error' ? 8000 : 4000) {
@@ -137,6 +138,6 @@ export const useUiStore = defineStore('ui', () => {
     promptState, prompt, resolvePrompt,
     connectionDialog, openConnectionDialog, closeConnectionDialog,
     preferencesOpen, ddlDialog, exportDialog, dumpDialog, csvDialog,
-    toolsDialog, copyTableDialog, generateDialog, compareDialog,
+    toolsDialog, copyTableDialog, generateDialog, compareDialog, databaseFilterDialog,
   }
 })
